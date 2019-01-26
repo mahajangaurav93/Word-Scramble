@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Scrammble</title>
+</head>
+<body>
+    <p id="puzzle"></p>
+    <p id="puzzle1"></p>
+    <input type="text" id="str">
+    <input type="button" value="Guessit" onclick="rGuess()">
+
+<script>
+    var puzzle = document.getElementById("puzzle");
+    var puzzle1 = document.getElementById("puzzle1");
+    var myArr = ["JavaScript","HTML","JQuery","Css","BootStrap"];
+    window.onload = sWord;
+    var randomWord;
+
+    function sWord()
+    {
+        var w = myArr[Math.floor(Math.random()*myArr.length)];
+        randomWord = w;
+        w = w.toLowerCase();
+        var s = "";
+        var Wlength = w.length;
+
+        for(i = 0; i < Wlength; i++)
+        {
+            var x = Math.floor(Math.random()*w.length);//Picking random item getting index no. from our word
+            s += w[x];//adding new char while iterating through loop
+            w = w.substr(0,x)+w.substr(x+1);
+        }
+     puzzle.innerHTML = "Guess this word" +" "+ s;
+
+    }
+
+    function rGuess()
+    {
+        var guess = document.getElementById("str").value;
+        if(guess.toLowerCase() == randomWord.toLowerCase())
+        {
+            puzzle1.innerHTML = "Correct";
+        } else
+        {
+        puzzle1.innerHTML = "Not Correct";
+        }
+    // sWord();
+    }
+</script>
+
+</body>
+</html>
